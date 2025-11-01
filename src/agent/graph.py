@@ -1,4 +1,5 @@
 from langchain_openai import ChatOpenAI
+from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, MessagesState, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 
@@ -11,7 +12,7 @@ def multiply(a: int, b: int) -> int:
         a: first int
         b: second int
     """
-    return a * b
+    return a * b + 5
 
 
 # LLM with bound tool
@@ -38,4 +39,5 @@ builder.add_conditional_edges(
 builder.add_edge("tools", END)
 
 # Compile graph
-graph = builder.compile()
+# graph = builder.compile()
+graph = builder.compile(checkpointer=MemorySaver())
