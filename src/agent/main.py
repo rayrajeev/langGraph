@@ -103,10 +103,12 @@ def main():
     state = MessagesState(messages=[])
     # Message counter for conversation tracking
     message_count = 0
-    thread_id = int(input("Enter a thread ID to continue: ").strip())
-    config: RunnableConfig = {"configurable": {"thread_id": thread_id}}
+    # thread_id = int(input("Enter a thread ID to continue: ").strip())
+    # config: RunnableConfig = {"configurable": {"thread_id": thread_id}}
 
     while True:
+        thread_id = int(input("Enter a thread ID to continue: ").strip())
+        config: RunnableConfig = {"configurable": {"thread_id": thread_id}}
         # Get user input with colorful prompt
         user_input = input(print_user_prompt()).strip()
 
